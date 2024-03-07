@@ -1,0 +1,15 @@
+backend 
+    - Register
+    - Login
+        - able to edit password 
+
+
+
+
+Register 
+Login
+Add to Cart
+
+
+Frontend 
+    - register and login screen mobile view
