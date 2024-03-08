@@ -1,15 +1,14 @@
 backend 
-    - Register
+    - design navbar after logged in 
     - Login
         - able to edit password 
-
-
-
-
-Register 
-Login
-Add to Cart
+    - create Order logic with products
+    - ** build the shop **
 
 
 Frontend 
-    - register and login screen mobile view
+    - logged in status is with an API ** CHANGE ** 
+    - design profile page
+    - spinning wheel for loading times
+        - profile page
+        - order page

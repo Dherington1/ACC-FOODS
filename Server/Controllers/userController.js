@@ -12,8 +12,25 @@ exports.register = catchAsync(async (req, res, next) => {
     User.create({ first_name, last_name, email, password })
     .then(user => {
         // Create JWT
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN
+        const token = jwt.sign(
+            {   id: user.user_id, 
+                first_name: user.first_name, 
+                last_name: user.last_name, 
+                role: user.role 
+            }, 
+            process.env.JWT_SECRET, {
+                expiresIn: process.env.JWT_EXPIRES_IN
+            }
+        );
+
+        // Set the token in an HTTP-only cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Send over https in production
+            sameSite: 'strict', // Strictly limit cookie to your site's requests
+            expiresIn: new Date(
+                Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+            ),
         });
         
         res.status(201).json({
@@ -59,9 +76,16 @@ exports.login = catchAsync(async (req, res, next) => {
     }
 
     // Create JWT token
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-    });
+    const token = jwt.sign(
+        {   id: user.user_id, 
+            first_name: user.first_name, 
+            last_name: user.last_name, 
+            role: user.role 
+        }, 
+        process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        }
+    );
 
     // Set the token in an HTTP-only cookie
     res.cookie('token', token, {
@@ -101,13 +125,12 @@ exports.getUserById = async (req, res, next) => {
 
         // Verify and decode the token to extract the user ID or other payload data
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        // With the decoded ID, you can now fetch the user details
-        // Assuming the decoded token includes the user ID
         const userId = decoded.id;
-        const user = await User.findById(userId);
 
-        // Return the user information, excluding sensitive data like passwords
+        // find user using the id
+        const user = await User.findByPk(userId);
+
+        // Return the user information
         res.status(200).json({
             status: 'success',
             data: {
@@ -117,6 +140,10 @@ exports.getUserById = async (req, res, next) => {
 
     } catch (err) {
         console.log(err.message);
+        res.status(500).json({
+            status: 'error',
+            message: 'Internal server error',
+        });
     }
 }
 
@@ -155,3 +182,22 @@ exports.allUserData = async (req, res, next) => {
     }
   });
 };
+
+
+exports.getTokenStatus = (req, res) => {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ isLoggedIn: false });
+    }
+  
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ isLoggedIn: false });
+      }
+  
+      // Optionally, perform additional checks or refresh the token here
+  
+      res.status(200).json({ isLoggedIn: true });
+    });
+};
+  
