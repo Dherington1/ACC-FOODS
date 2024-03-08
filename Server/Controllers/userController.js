@@ -26,24 +26,11 @@ exports.register = catchAsync(async (req, res, next) => {
         
     })
     .catch(err => {
-        // if (err.name === 'SequelizeUniqueConstraintError') {
-        //     const errors = err.errors.map(error => error.message);
-        //     return res.status(400).json({
-        //         status: 'fail',
-        //         message: 'Validation error',
-        //         errors: errors
-        //     });
-        // } else if (err.name === 'SequelizeValidationError') {
-        //     const errors = err.errors.map(error => error.message);
-        //     return res.status(400).json({
-        //         status: 'fail',
-        //         message: 'Validation error',
-        //         errors: errors
-        //     });
-        // } else {
-        //     return next(err);
-        // }
         console.log(err.message);
+        return res.status(500).json({
+            status: 'error',
+            message: 'An error occurred during registration.'
+        });
     });
 });
 
