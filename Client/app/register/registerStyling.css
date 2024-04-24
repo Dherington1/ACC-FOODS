@@ -1,0 +1,154 @@
+.main-wrapper {
+    display: flex;
+    width: 100%; 
+    min-height: 100vh; 
+}
+
+.bg-custom-image {
+    background-image: url('../../public/food-board.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 23%;
+    color: white;
+    display: flex;
+    min-height: 100vh; 
+    opacity: 1.8;
+    display: flex;
+}
+
+
+/* company */
+.company {
+    padding-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.company h1{
+    font-weight: bold;
+    font-size: 2.1vh;
+    margin-right: 12px;
+}
+.company h4 {
+    font-size: 1.5vh;
+}
+  
+
+/* info */
+.information-wrapper {
+    display: block;
+    position: relative;
+    margin-top: 30vh;
+}
+.information-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; 
+    border-top: 2px solid white;
+}
+.information {
+    display: flex;
+    justify-content: center;
+    padding-top: 3vh;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+.information h1 {
+    font-weight: bold;
+    font-size: 2.2vh;
+    width: 80%;
+    padding-bottom: 1vh;
+}
+.information p {
+    width: 80%;
+}
+
+
+
+/* register form */
+.heading-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    text-align: center;
+    margin-top: 25px;
+}
+
+.heading-container p {
+    flex-grow: 0; /* Prevent the h3 from growing to fill the container */
+    z-index: 1; /* Ensure the text appears above the pseudo-element */
+    position: relative; /* Needed to properly place the pseudo-element */
+    background-color: #FFF; /* Match the background color of your site to "cut out" the line */
+    padding-right:5px; /* Provide spacing around the text to separate it from the line */
+    font-weight: bold;
+}
+
+.heading-container::after {
+    content: ' '; /* Required for the pseudo-element to display */
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 55%; /* Make the line span the full container width */
+    height: 1px; /* Height of the line */
+    background-color: #000; /* Color of the line */
+    z-index: 0; /* Place the line below the text */
+}
+
+/* Optional: if you want the line to only extend to the container's edges minus some margin */
+.heading-container {
+    width: 100%;
+    margin: 0 auto; /* Center the container if it's not full width */
+}
+
+
+
+
+
+
+@media (min-width: 2400px) {
+    .register-form {
+        margin-right: 38vh;
+    }
+}
+
+/* For image to top screen */
+@media (max-width: 1024px) {
+    .main-wrapper {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .bg-custom-image {
+        background-image: url('../../public/food-board.jpg');
+        background-size: cover;
+        background-position: top;
+        background-repeat: no-repeat;
+        width: 100%; 
+        min-height: 8vh; 
+    }
+
+    .company-wrapper {
+        width: 70%; /* Or any specific width */
+        margin: 0 auto; /* Auto margins on the sides */
+    }
+    .company {
+        padding-top: 2.3vh;
+    }
+
+    .information-wrapper {
+        display: none
+    }
+
+    .information{
+        display: none
+    }
+
+    .register-title {
+        margin-top: 0px;
+    }
+}

@@ -1,0 +1,114 @@
+.main-wrapper {
+    display: flex; 
+    width: 100%; 
+    min-height: 100vh; 
+}
+
+.bg-custom-image {
+    background-image: url('../../public/food-login1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 23%;
+    color: white;
+    display: flex;
+    min-height: 100vh; 
+    opacity: 1;
+}
+
+
+/* company */
+.company {
+    padding-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.company h1{
+    font-weight: bold;
+    font-size: 2.1vh;
+    margin-right: 12px;
+}
+.company h4 {
+    font-size: 1.5vh;
+}
+  
+
+/* info */
+.information-wrapper {
+    display: block;
+    position: relative;
+    margin-top: 30vh;
+}
+.information-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; 
+    border-top: 2px solid white;
+}
+.information {
+    display: flex;
+    justify-content: center;
+    padding-top: 3vh;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+.information h1 {
+    font-weight: bold;
+    font-size: 2.2vh;
+    width: 80%;
+    padding-bottom: 1vh;
+}
+.information p {
+    width: 80%;
+}
+
+
+@media (min-width: 2400px) {
+    .login-form {
+        margin-right: 38vh;
+    }
+}
+
+
+/* For image to top screen */
+@media (max-width: 1024px) {
+    .main-wrapper {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .bg-custom-image {
+        background-image: url('../../public/food-login1.jpg');
+        background-size: cover;
+        background-position: top;
+        background-repeat: no-repeat;
+        width: 100%; 
+        min-height: 8vh; 
+    }
+
+    .company-wrapper {
+        width: 70%; 
+        margin: 0 auto; 
+    }
+    .company {
+        padding-top: 2.3vh;
+    }
+
+    .information-wrapper {
+        display: none
+    }
+
+    .information{
+        display: none
+    }
+
+    .register-title {
+        margin-top: 0px;
+    }
+}
