@@ -36,10 +36,19 @@
 const express = require('express');
 const sequelize = require('./config/connection'); 
 const userRoutes = require('./Routes/userRoutes');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const corsOptions = {
+  origin: 'http://localhost:3000', // Specify the client origin
+  credentials: true, // To allow cookies and credentials
+};
+
+app.use(cookieParser());
+app.use(cors(corsOptions));
 // Middleware to parse JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
