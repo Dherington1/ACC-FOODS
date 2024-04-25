@@ -10,7 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         'custom-green': '#16a34a', 
-        'custom-burgundy' : '#421014', 
+        'custom-burgundy' : '#FE5733', 
+        'custom-white' : '#ffffff',
+        'custom-black' : '#000000',
+        'custom-purple' : '#342E48',
       },
       boxShadow: {
         'custom-dark': '0 10px 15px -3px rgba(0, 0, 0, 0.9), 0 4px 6px -4px rgba(0, 0, 0, 0.9)',

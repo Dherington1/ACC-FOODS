@@ -1,31 +1,39 @@
-.hero-main {
-    background-image: url('../../../public/food23.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
-    width: 100%;
-    height:53vh;
+/* for Hero  */
+.container {
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+}
+.hero-buttons {
+    display: flex;
+    align-items: center; 
+    gap: 16px; 
 }
 
+/* navbar */
+.image-container div, .image-container img {
+    margin: 0;
+    padding: 0;
+}
+
+/* INFO */
 .infoSection-title {
     font-weight: bold;
     font-size: 21px;
     margin-bottom: 5px;
     text-align: center;
 }
-
 .infoSection-p {
     text-align: center;
     max-width: 70%;
     margin: auto;
 }
 
+/* Services */
 .ourServices-img {
     width: 100%;
     height: 40vh;
 }
-
 .services {
     display: block; /* Allows the element to take full width */
     text-align: center; /* Centers the text */
@@ -35,7 +43,6 @@
     margin: 0 auto; /* Centers the block horizontally */
     padding-bottom: 10px; /* Provides space for the line */
 }
-
 .services::after {
     content: '';
     display: block; /* Makes it a block element, which can be centered with margin */
@@ -47,6 +54,7 @@
     top: 15px; /* Distance from the text */
 }
 
+/* About */
 .about-section {
     background-image: url('../../../public/van1.jpg');
     background-size: cover;
@@ -56,4 +64,92 @@
     width: 100%;
     height:70vh;
     color: white;
+}
+
+
+/* Categories */
+.cat-title {
+    display: flex;
+    justify-content: space-between;
+}
+.cat-card-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 3vh;
+}
+.individual-cat-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px 65px;
+    border-radius: 5%;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.2);  
+    cursor: pointer;
+}
+.cat-card-img{
+    padding: 0px 0px;
+}
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+
+/* discount */
+.discount-container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, #486c2c 0%, #022217 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+/* customer review */
+.customer-title {
+    text-align: center;
+}
+
+.customer-love-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.customerLoveCards {
+    padding: 35px 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 90%;
+}
+.review-text, .review-score ,.review-name{
+    text-align: center;
+    padding: 10px 0px;
+}
+.review-score {
+    color: #98fb98
+}
+.customer-rating{
+    display: flex;
+    justify-content: center;
+}
+
+/* why us section */
+.WhyUsSection-container {
+    background-color: #D7E1DC;
+    height: 100%;
+    width: 100%;
 }
