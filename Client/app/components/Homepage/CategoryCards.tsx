@@ -20,7 +20,7 @@ function CategoryCards(props: Cardprops) {
                     className='cat-card-img'
                 />
                 <h1 className='text-xl text-custom-black font-bold px-2 py-2'>{props.title}</h1>
-                <h4 className='text-md px-2'>(22 items)</h4>
+                <h4 className='text-md px-2 pb-5'>(22 items)</h4>
             </div>
         </div>
     )

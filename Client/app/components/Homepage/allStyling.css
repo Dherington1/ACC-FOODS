@@ -1,3 +1,11 @@
+.gradient-div {
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to left, #486c2c 0%, #022217 100%); */
+    /* background: linear-gradient(to left, #486c2c 0%, #1F2937 100%); */
+    background: linear-gradient(to right, #1F2937, #022217, #43602d);
+}
+
 /* for Hero  */
 .container {
     position: relative; 
@@ -74,46 +82,60 @@
 }
 .cat-card-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     margin-top: 3vh;
+    gap: 30px;
 }
+
 .individual-cat-card-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    padding: 25px 65px;
     border-radius: 5%;
-
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.2);  
     cursor: pointer;
+    animation: fadeInRight 0.5s ease-out;
 }
 .cat-card-img{
-    padding: 0px 0px;
+    margin: 25px 65px;
 }
-@keyframes slideInFromTop {
-    0% {
-        transform: translateY(-100%);
+.arrows {
+    color: #FE5733;
+}
+
+@keyframes fadeInRight {
+    from {
         opacity: 0;
+        transform: translateX(50px);
     }
-    100% {
-        transform: translateY(0);
+    to {
         opacity: 1;
+        transform: translateX(0);
     }
 }
 
-.slide-in {
-    animation: 1s ease-out 0s 1 slideInFromTop;
-}
+/* .item {
+    animation: fadeInRight 0.5s ease-out;
+} */
+
+
+
+
+
+
+
+
+  
 
 
 /* discount */
 .discount-container {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to left, #486c2c 0%, #022217 100%);
+    background: linear-gradient(to right, #1F2937, #022217, #43602d);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.2);
     margin-bottom: 25px;
     border-radius: 10px;
@@ -152,4 +174,25 @@
     background-color: #D7E1DC;
     height: 100%;
     width: 100%;
+}
+
+
+/* Footer */
+.footer-container{
+    background: linear-gradient(to right, #1F2937, #022217, #43602d);
+}
+.social {
+    border-radius: 80%;
+    background-color: white;
+    padding: 4px;
+}
+.social:hover {
+    background-color: #FE5733;
+}
+.end-tags :hover {
+    cursor: pointer;
+    background-color: #FE5733;
+}
+.NavigationLinks:hover{
+    color: #FE5733;
 }

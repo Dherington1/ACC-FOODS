@@ -1,35 +1,14 @@
-// import NavBar from "./components/Homepage/navBar";
-// import HeroSection from "./components/Homepage/HeroSection";
-// import Categories from "./components/Homepage/Categories";
-
-// import './testing.css'
-// import DiscountSection from "./components/Homepage/DiscountSection";
-// import CustomerLove from "./components/Homepage/CustomerLove";
-
-// export default function Home() {
-//   return (
-//     <main>
-//       <div className="gradient-div">
-//         <NavBar /> 
-//         <HeroSection />
-//       </div>
-
-//       <Categories />
-//       <DiscountSection />
-//       <CustomerLove />
-//     </main>
-//   );
-// }
-
 'use client'
 import React, { useState, useEffect } from 'react';
 import NavBar from "./components/Homepage/navBar";
 import HeroSection from "./components/Homepage/HeroSection";
 import Categories from "./components/Homepage/Categories";
-import './testing.css';
 import DiscountSection from "./components/Homepage/DiscountSection";
 import CustomerLove from "./components/Homepage/CustomerLove";
 import WhyUsSection from './components/Homepage/WhyUsSection';
+import Footer from './components/Homepage/Footer';
+
+import './components/Homepage/allStyling.css'
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,13 +37,17 @@ export default function Home() {
       </div>
 
       <Categories isVisible={isVisible} />
+
       <DiscountSection isVisible={isVisible} />
       <CustomerLove isVisible={isVisible} />
-      
-      <div className='WhyUsSection-container'>
+
+      <div className='WhyUsSection-container mb-24 '>
         <WhyUsSection isVisible={isVisible}/>
       </div>
 
+      {/* <div style={{height: '200px', width: '100%'}}></div> */}
+
+      <Footer />
     </main>
   );
 }

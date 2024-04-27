@@ -21,7 +21,7 @@ function HeroSection() {
                         </button>
                     </Link>
 
-                    <h1 className='uppercase leading-normal text-lg text-custom-white m-0' style={{paddingTop: '6px'}}>CONTACT US</h1>
+                    <h1 className='uppercase leading-normal text-lg text-custom-white m-0 hover:text-custom-burgundy cursor-pointer' style={{paddingTop: '6px'}}>CONTACT US</h1>
                 </div>
 
                 
