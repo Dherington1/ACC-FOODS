@@ -1,18 +1,7 @@
-/* Search Box */
-.searchBar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+/* background  */
+body {
+    background-color: #F7F8FA;
 }
-
-.searchInput {
-    width: 40%;
-    border-radius: 2px;
-    padding: 8px;
-}
-
-
 
 /* Category Card */
 .categoriesHeader{
@@ -22,12 +11,11 @@
     font-family: sans-serif;
     color: #421014;
 }
-
 .cardContainer{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 }
 .CategoryCardIndividual {
     margin-top: 25px;
@@ -55,7 +43,6 @@
 }
 
 .bg-custom-image {
-    /* background-image: url('../../public/food-login1.jpg'); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -120,6 +107,22 @@
 .information p {
     width: 80%;
 }
+
+
+/* product card */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (min-width: 2400px) {

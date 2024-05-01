@@ -22,8 +22,8 @@ Product.init(
       type: DataTypes.DECIMAL(10, 2), 
       allowNull: false,
       validate: {
-        isDecimal: true, // Ensures the price is a decimal
-        min: 0 // Ensures the price is not negative
+        isDecimal: true, 
+        min: 0 
       }
     },
     description: {
@@ -35,7 +35,8 @@ Product.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'products' 
+    modelName: 'products',
+    timestamps: false
   }
 );
 

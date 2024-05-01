@@ -1,41 +1,7 @@
-// const express = require('express');
-// const dotenv = require('dotenv');
-// const cors = require('cors');
-// const path = require('path');
-// const cookieParser = require('cookie-parser');
-
-// const app = express();
-// dotenv.config({ path: '.env' });
-
-// // Enable CORS for all routes
-// app.use(cors());
-// // Middleware to parse JSON request bodies
-// app.use(express.json());
-// app.use(cookieParser());
-
-// var mysql = require('mysql2');
-// var connection = mysql.createConnection({
-//   host: process.env.DB_HOST,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD,
-//   database: process.env.DB_NAME
-// });
-
-// connection.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
-
-// // Define the port to listen on
-// const PORT = process.env.PORT || 8080; 
-
-// // Start listening for requests
-// app.listen(PORT, () => {
-//   console.log(`App listening at http://localhost:${PORT}`);
-// });
 const express = require('express');
 const sequelize = require('./config/connection'); 
 const userRoutes = require('./Routes/userRoutes');
+const productRoutes = require('./Routes/productRoutes')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
@@ -60,6 +26,8 @@ app.get('/', (req, res) => {
 
 // turn on routes
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/products', productRoutes);
+
 
 // Sync sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {

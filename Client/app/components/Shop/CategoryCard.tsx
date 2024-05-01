@@ -32,14 +32,19 @@ function CategoryCard() {
 
     return (
         <div className='cardContainer'>
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
-        <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
+            <CategoryCardIndividual />
         </div>
     )
 }

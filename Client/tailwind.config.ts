@@ -14,6 +14,8 @@ const config: Config = {
         'custom-white' : '#ffffff',
         'custom-black' : '#000000',
         'custom-purple' : '#342E48',
+        'custom-lightGreen' : '#28AF61',
+        'custom-lightGrey' :' #DEDEDE', 
       },
       boxShadow: {
         'custom-dark': '0 10px 15px -3px rgba(0, 0, 0, 0.9), 0 4px 6px -4px rgba(0, 0, 0, 0.9)',
@@ -23,6 +25,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      width: {
+        '1/5': '24%',
+        '4/5' : '80%',
+      }
     },
   },
   plugins: [
