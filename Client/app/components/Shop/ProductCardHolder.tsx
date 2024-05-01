@@ -20,8 +20,8 @@ const ProductCardHolder: React.FC<ProductCardHolderProps> = ({ products }) => {
     return (
         <>
             <div className='flex gap-3 py-10 flex-wrap'>
-                {products.map((product) => (
-                    <ProductCardIndividual key={product.id} product={product} />
+                {products.map((product, index) => (
+                    <ProductCardIndividual product={product} key={index}/>
                 ))}
             </div>
         </>

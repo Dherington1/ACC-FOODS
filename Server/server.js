@@ -1,9 +1,13 @@
 const express = require('express');
-const sequelize = require('./config/connection'); 
+const sequelize = require('./config/connection');
 const userRoutes = require('./Routes/userRoutes');
-const productRoutes = require('./Routes/productRoutes')
+const productRoutes = require('./Routes/productRoutes');
+const categoryRoutes = require('./Routes/categoryRoutes')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+
+// Import model associations
+require('./models/associations'); 
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,10 +28,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// turn on routes
+// Turn on routes
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/products', productRoutes);
-
+app.use('/api/v1/category', categoryRoutes);
 
 // Sync sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {

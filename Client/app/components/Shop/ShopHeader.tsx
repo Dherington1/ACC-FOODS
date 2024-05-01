@@ -1,13 +1,14 @@
 'use client'
 import React from 'react';
-import {useState, FormEvent} from 'react';
+import {useState, FormEvent, useEffect} from 'react';
 import Image from "next/image";
-import CategoryCard from './CategoryCard';
 import Link from 'next/link';
-import NavBarClient from '../Shop/NavBarClientShop';
+import axios from 'axios';
+// imported components
+import CategoryCard from './CategoryCard';
 import ProductCardHolder from './ProductCardHolder';
 
-// Define the Product interface
+
 interface Product {
     id: number;
     name: string;
@@ -16,26 +17,44 @@ interface Product {
     description: string;
 }
 
+interface categoryName {
+    name: string
+}
 
-function ShopHeader() {
+
+function ShopHeader(prop: categoryName) {
+    // search bar 
     const [searchValue, setSearchValue] = useState<string>('');
     const [submittedSearchValue, setSubmittedSearchValue] = useState<string>('');
-    const [products, setProducts] = useState<Product[]>([]);
-    const [userHitSearch, setUserHitSearch] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>('');
+    // set products queried 
+    const [products, setProducts] = useState<Product[]>([]);
+    // user interacted with a button
+    const [userHitCategory, setUserHitCategory] = useState<boolean>(false);
+    const [userHitSearch, setUserHitSearch] = useState<boolean>(false);
+
+    // checks for category clicks
+    useEffect(() => {
+        if (prop.name !== '') {
+            setUserHitCategory(true)
+            handleCategoryChange();
+        }
+    }, [prop.name]); 
+
 
     const onSearchSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        // clear category state if true 
+        setUserHitCategory(false)
+
         try {
-            const response = await fetch(`http://localhost:8080/api/v1/products/search?title=${encodeURIComponent(searchValue)}`, {
-                method: 'GET',
-            });
-            const data = await response.json();
-            setProducts(data); 
+            const searchData = await axios.get(`http://localhost:8080/api/v1/products/search?title=${encodeURIComponent(searchValue)}`);
+            setProducts(searchData.data); 
             setSubmittedSearchValue(searchValue)
             setUserHitSearch(true)
             setInputValue('');
-            console.log(data); 
+
+            console.log(searchData.data); 
         } catch (error) {
             console.error('Failed to fetch products:', error);
             setInputValue('');
@@ -46,6 +65,24 @@ function ShopHeader() {
         setUserHitSearch(false);
         setSearchValue('')
     }
+
+    const handleCategoryChange = async () => {
+        // event.preventDefault();
+        if (userHitSearch) {
+            setUserHitSearch(false)
+        }
+
+        try {   
+            const encodedName = encodeURIComponent(prop.name);
+            const categoryData = await axios.get(`http://localhost:8080/api/v1/category/chosen?name=${encodedName}`)
+            setProducts(categoryData.data); 
+            console.log('categoryData: ', categoryData.data);
+            
+        } catch (err) {
+            console.error('category fetch failed', err);
+        }
+    }
+
 
     return (
         <>
@@ -106,12 +143,23 @@ function ShopHeader() {
 
                 </div>
 
-                {/* below make this a component */}
-
+                {/* if user has search a product */}
                 {userHitSearch ? 
                 (
                     <>
-                        <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'><h1>Searched: {submittedSearchValue}</h1> <p className='cursor-pointer text-custom-burgundy' onClick={clearSearch}>x</p></div>
+                        <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'>
+                            <h1>Searched: {submittedSearchValue}</h1> 
+                            <p className='cursor-pointer text-custom-burgundy' onClick={clearSearch}>x</p>
+                        </div>
+                        <div className='flex mx-2 flex-row gap-3 md:mx-4 mx-auto flex-wrap'> 
+                            <ProductCardHolder  products={products}/>
+                        </div>
+                    </>
+                ) : userHitCategory ? (
+                    <>
+                         <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'>
+                            <h1>Category: {prop.name}</h1> 
+                        </div>
                         <div className='flex mx-2 flex-row gap-3 md:mx-4 mx-auto flex-wrap'> 
                             <ProductCardHolder  products={products}/>
                         </div>
@@ -125,18 +173,6 @@ function ShopHeader() {
                     </>
                 )}
 
-
-
-
-                {/* <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'><h1 >All Categories</h1></div>
-                <div className='flex mx-2 flex-row gap-3 md:mx-4 mx-auto'> 
-                    <CategoryCard />
-                </div> */}
-
-                {/* <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'><h1>Searched: {submittedSearchValue}</h1></div>
-                <div className='flex mx-2 flex-row gap-3 md:mx-4 mx-auto flex-wrap'> 
-                    <ProductCardHolder  products={products}/>
-                </div> */}
             </div>
         </>
     )

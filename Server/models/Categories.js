@@ -5,7 +5,7 @@ class Categories extends Model {}
 
 Categories.init(
   {
-    id: {
+    category_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -22,7 +22,8 @@ Categories.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'categories' 
+    modelName: 'categories',
+    timestamps: false
   }
 );
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '../components/Shop/navBar'
+import NavBar from '../components/Shop/NavBar'
 import './shopStyling.css'
 import ShopHeader from '../components/Shop/ShopHeader'
 
@@ -8,7 +8,7 @@ function Page() {
         <>
             <div className='flex '>
                 <NavBar />
-                <ShopHeader />
+                {/* <ShopHeader /> */}
             </div>
         </>
     )
