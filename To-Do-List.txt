@@ -12,3 +12,4 @@ Frontend
     - spinning wheel for loading times
         - profile page
         - order page
+    - Figure out why product cards are weird

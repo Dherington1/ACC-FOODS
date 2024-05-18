@@ -29,6 +29,7 @@ function ShopHeader(prop: categoryName) {
     const [inputValue, setInputValue] = useState<string>('');
     // set products queried 
     const [products, setProducts] = useState<Product[]>([]);
+    const [numProducts, setNumProducts] = useState<number>(0)
     // user interacted with a button
     const [userHitCategory, setUserHitCategory] = useState<boolean>(false);
     const [userHitSearch, setUserHitSearch] = useState<boolean>(false);
@@ -77,6 +78,7 @@ function ShopHeader(prop: categoryName) {
             const categoryData = await axios.get(`http://localhost:8080/api/v1/category/chosen?name=${encodedName}`)
             setProducts(categoryData.data); 
             console.log('categoryData: ', categoryData.data);
+            setNumProducts(categoryData.data.length)
             
         } catch (err) {
             console.error('category fetch failed', err);
@@ -91,7 +93,7 @@ function ShopHeader(prop: categoryName) {
                 <div className='header-container flex '>
                     {/* Left side */}
                     <div className='flex-1'>
-                        <form className="mx-2 mt-16 flex flex-row gap-3 last:mb-2 md:mx-4 md:last:mb-6 w-full sm:w-1/2 mx-auto" onSubmit={onSearchSubmit}>
+                        {/* <form className="mx-2 mt-16 flex flex-row gap-3 last:mb-2 md:mx-4 md:last:mb-6 w-full sm:w-1/2 mx-auto" onSubmit={onSearchSubmit}>
                             <div className="flex w-full items-center">
                                 <div className="flex flex-col w-full flex-grow relative border rounded-3xl ">
                                     <input
@@ -117,7 +119,36 @@ function ShopHeader(prop: categoryName) {
                                     </button>
                                 </div>
                             </div>
+                        </form> */}
+
+                        <form className="mx-2 mt-16 flex flex-row gap-3 last:mb-2 md:mx-4 md:last:mb-6 w-full sm:w-1/2 mx-auto" onSubmit={onSearchSubmit}>
+                            <div className="flex w-full items-center">
+                                <div className="flex flex-col w-full flex-grow relative border rounded-3xl overflow-hidden">
+                                    <input
+                                        className="m-0 w-full resize-none border-0 focus:ring-0 focus-visible:ring-0 py-3.5 pr-12 pl-10 text-black dark:text-black rounded-3xl"
+                                        type="text"
+                                        value={inputValue}
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                            setInputValue(event.target.value);
+                                            setSearchValue(event.target.value);
+                                        }}
+                                    />
+                                    <button className="absolute top-1/2 left-4 transform -translate-y-1/2 p-0 text-black dark:text-white">
+                                        <div className="flex w-full gap-2 items-center justify-center">
+                                            <Image width="24" height="24" src='/search.svg' alt='Search Icon' />
+                                        </div>
+                                    </button>
+                                    <button
+                                        className="absolute top-1/2 right-2 transform -translate-y-1/2 rounded-3xl border px-6 py-2 text-white enabled:bg-custom-lightGreen disabled:text-gray-400 disabled:opacity-10 dark:border-white dark:bg-white"
+                                        data-testid="send-button"
+                                        type='submit'
+                                    >
+                                        GO
+                                    </button>
+                                </div>
+                            </div>
                         </form>
+
                     </div>
 
 
@@ -148,7 +179,7 @@ function ShopHeader(prop: categoryName) {
                 (
                     <>
                         <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'>
-                            <h1>Searched: {submittedSearchValue}</h1> 
+                            <h1>Search results: {numProducts} item(s) found for &quot;{submittedSearchValue}&quot;.</h1>
                             <p className='cursor-pointer text-custom-burgundy' onClick={clearSearch}>x</p>
                         </div>
                         <div className='flex mx-2 flex-row gap-3 md:mx-4 mx-auto flex-wrap'> 
@@ -157,11 +188,14 @@ function ShopHeader(prop: categoryName) {
                     </>
                 ) : userHitCategory ? (
                     <>
-                         <div className='flex mt-7 mx-2 flex-row gap-3 md:mx-4 mx-auto text-custom-purple font-bold text-3xl'>
-                            <h1>Category: {prop.name}</h1> 
-                        </div>
-                        <div className='flex mx-2 flex-row gap-3 md:mx-4 mx-auto flex-wrap'> 
-                            <ProductCardHolder  products={products}/>
+                        <div className='w-full max-w-screen-3xl mr-10'>
+                            <div className='flex mt-7 mx-2 md:mx-4 flex-row gap-3 mx-auto text-custom-purple font-bold text-3xl'>
+                                <h1>Category: {prop.name}</h1> 
+                                {/* <h1>Category results: {numProducts} item(s) found for &quot;{prop.name}&quot;.</h1> */}
+                            </div>
+                            <div className='flex mx-2 md:mx-4 flex-row gap-3 mx-auto flex-wrap justify-start'>
+                                <ProductCardHolder products={products}/>
+                            </div>
                         </div>
                     </>
                 ) : (

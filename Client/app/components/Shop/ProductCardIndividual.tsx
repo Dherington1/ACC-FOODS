@@ -32,9 +32,9 @@ const ProductCardIndividual: React.FC<ProductCardIndividualProps> = ({ product }
         setCount(counter - 1);
         }
     };
-
+    
     return (
-        <div className='py-4 flex flex-wrap flex-col justify-center items-center w-1/5 bg-white rounded-3xl '>
+        <div className='py-4 flex flex-col justify-center items-center w-80 bg-white rounded-3xl m-3'>
             <Image 
                 src='/protein.png'
                 width={150}
@@ -43,12 +43,10 @@ const ProductCardIndividual: React.FC<ProductCardIndividualProps> = ({ product }
                 className='mb-2'
             />
             <p className='mb-2'>${product.price}</p>
-            <div className='w-3/4 mb-2'>
+            <div className='w-3/4 mb-2 text-center'>
                 <h3>{product.name}</h3>
             </div>
-
-            
-            <div className="flex items-center space-x-1 mb-2" >
+            <div className="flex items-center space-x-1 mb-2">
                 <button 
                     className="px-4 py-2 text-white bg-custom-purple hover:bg-custom-purple rounded"
                     onClick={decrement}
@@ -68,8 +66,8 @@ const ProductCardIndividual: React.FC<ProductCardIndividualProps> = ({ product }
                     +
                 </button>
             </div>
-            
-            <button className='bg-custom-lightGreen rounded px-4 py-2 w-1/4 text-white mb-2'>Add</button>
+            <button className='bg-custom-lightGreen rounded px-4 py-2 w-1/2 text-white mb-2'>Add</button>
+            {/* <button className='bg-custom-lightGreen rounded px-4 py-2 w-full text-white mb-2'>Add</button> */}
         </div>
     )
 }
