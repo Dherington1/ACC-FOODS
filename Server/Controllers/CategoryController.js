@@ -9,7 +9,6 @@ exports.getPickedCategory = catchAsync(async (req, res, next) => {
     const { name } = req.query;  
 
     try {
-        // Fetch category with its associated products
         const categoryWithProducts = await Category.findOne({
             where: { name: name }, 
             include: [{

@@ -1,4 +1,4 @@
-const User = require('../models/Users'); 
+const User = require('../models/User'); 
 const catchAsync = require('../utilities/catchAsync')
 const express = require('express');
 const jwt = require('jsonwebtoken');
@@ -77,7 +77,8 @@ exports.login = catchAsync(async (req, res, next) => {
 
     // Create JWT token
     const token = jwt.sign(
-        {   id: user.user_id, 
+        {   
+            id: user.user_id, 
             first_name: user.first_name, 
             last_name: user.last_name, 
             role: user.role 
@@ -86,7 +87,7 @@ exports.login = catchAsync(async (req, res, next) => {
             expiresIn: process.env.JWT_EXPIRES_IN
         }
     );
-
+    console.log(token);
     // Set the token in an HTTP-only cookie
     res.cookie('token', token, {
         httpOnly: true,

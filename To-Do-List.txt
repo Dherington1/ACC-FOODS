@@ -1,15 +1,15 @@
 backend 
-    - design navbar after logged in 
     - Login
         - able to edit password 
     - create Order logic with products
-    - ** build the shop **
+    - ** build the shop *
 
 
 Frontend 
     - logged in status is with an API ** CHANGE ** 
+    - design navbar after logged in 
     - design profile page
     - spinning wheel for loading times
         - profile page
         - order page
-    - Figure out why product cards are weird
+

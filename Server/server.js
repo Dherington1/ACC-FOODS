@@ -3,6 +3,7 @@ const sequelize = require('./config/connection');
 const userRoutes = require('./Routes/userRoutes');
 const productRoutes = require('./Routes/productRoutes');
 const categoryRoutes = require('./Routes/categoryRoutes')
+const cartRoutes = require('./Routes/cartRoutes')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/category', categoryRoutes);
+app.use('/api/v1/cart', cartRoutes)
 
 // Sync sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {

@@ -34,6 +34,8 @@ function ShopHeader(prop: categoryName) {
     const [userHitCategory, setUserHitCategory] = useState<boolean>(false);
     const [userHitSearch, setUserHitSearch] = useState<boolean>(false);
 
+    const [cart, setCart] = useState<any>({})
+
     // checks for category clicks
     useEffect(() => {
         if (prop.name !== '') {
@@ -79,12 +81,10 @@ function ShopHeader(prop: categoryName) {
             setProducts(categoryData.data); 
             console.log('categoryData: ', categoryData.data);
             setNumProducts(categoryData.data.length)
-            
         } catch (err) {
             console.error('category fetch failed', err);
         }
     }
-
 
     return (
         <>

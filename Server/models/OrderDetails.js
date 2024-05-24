@@ -5,7 +5,6 @@ class OrderDetails extends Model {}
 
 OrderDetails.init(
   {
-    // Define columns here
     order_details_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -24,7 +23,7 @@ OrderDetails.init(
       allowNull: false,
       references: {
         model: 'products', 
-        key: 'id'
+        key: 'product_id'
       }
     },
     quantity: {
@@ -48,3 +47,14 @@ OrderDetails.init(
 );
 
 module.exports = OrderDetails;
+
+
+
+
+// Carts -> User -> check out -> Orders -> User
+//   ^
+//   |
+// Cart Items 
+//   ^
+//   |
+// Products 
